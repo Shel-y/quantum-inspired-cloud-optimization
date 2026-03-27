@@ -1,35 +1,57 @@
-# ⚛️ Optimización de Nube Híbrida (Clásico-Cuántico) con AWS
+# ⚛️ Arquitectura de Referencia: Pipeline de Integración Híbrida (AWS Cloud + Quantum)
 
-Este repositorio contiene el código fuente de la demostración presentada en la charla **"De lo Clásico a lo Cuántico con AWS"** durante el **AWSome Women Summit LATAM 2026**.
+Este repositorio es una **Prueba de Concepto (PoC)** técnica diseñada para la charla *"De lo Clásico a lo Cuántico con AWS"* en el **AWSome Women Summit LATAM 2026**.
 
-## 🎯 El Problema
-A medida que las arquitecturas de microservicios escalan, encontrar la topología de red óptima para aislar nodos críticos se vuelve un problema matemático complejo. Las reglas de auto-escalado tradicionales a menudo reaccionan tarde o dejan infraestructura ociosa.
+---
 
-## 💡 La Solución Híbrida
-Este proyecto demuestra cómo utilizar un **Algoritmo Cuántico Variacional (inspirado en QAOA)** para tomar decisiones arquitectónicas proactivas. Unimos el poder de orquestación de la nube clásica con la exploración estocástica del cómputo cuántico.
+## 🚀 Propósito del Proyecto (PoC)
+Este no es un optimizador de producción. Es un **modelo de integración arquitectónica**. 
 
-### Flujo de la Arquitectura (Pipeline)
-1. **Ingesta (Amazon S3):** Descarga de un inventario simulado (`configs.csv`) con métricas operativas de infraestructura.
-2. **Orquestador Clásico (Amazon EC2):** Filtra los nodos con mayor estrés de CPU y ajusta los hiperparámetros (ángulo $\theta$) del circuito cuántico.
-3. **Coprocesador Cuántico (AWS Braket - LocalSimulator):** Ejecuta el circuito parametrizado para evaluar matemáticamente la estabilidad de entrelazar los nodos críticos (estado `11`).
-4. **Observabilidad (Amazon CloudWatch):** Traduce el resultado cuántico en una decisión binaria (Aislar / No Aislar) y envía la telemetría para alertado en tiempo real.
+El problema real en la industria actual no es solo el algoritmo cuántico, sino la **orquestación**: ¿Cómo llevamos datos de un servidor clásico a una QPU y devolvemos una decisión en milisegundos? Este proyecto resuelve esa "tubería" (pipeline) utilizando servicios nativos de AWS.
 
 ## 🗺️ Arquitectura
+
 <p align="center">
+
   <img src="./assets/S3.png" alt="Diagrama de Arquitectura de Nube Híbrida" width="600"/>
+
 </p>
 
-## ⚙️ Requisitos Previos
-* Cuenta de AWS activa.
-* Rol de IAM con permisos para `s3:GetObject` y `cloudwatch:PutMetricData`.
-* Python 3.8+
-* Librerías: `boto3`, `amazon-braket-sdk`
 
-## 🚀 Ejecución
+## 🏗️ Flujo de Trabajo (The Pipeline)
 
-1. Clona este repositorio y configura tus credenciales de AWS CLI.
-2. Asegúrate de tener un bucket de S3 con el archivo `configs.csv` (o deja que el script lea la versión local incluida).
-3. Ejecuta el pipeline:
-   ```bash
-   python hibrido_qaoa_demo.py
-   ```
+El valor de esta PoC reside en la **interoperabilidad** entre lo clásico y lo cuántico:
+
+1.  **Ingesta (S3):** Simulación de métricas de infraestructura en crudo.
+2.  **Lógica Clásica (EC2):** Filtrado de datos críticos y traducción de métricas a parámetros para el circuito.
+3.  **Prototipo Cuántico (AWS Braket):** Ejecución de un circuito parametrizado funcional que actúa como **modelo estructural**.
+4.  **Acción (CloudWatch):** Transformación de la probabilidad cuántica en una métrica de negocio (Decisión de Aislamiento).
+
+---
+
+## 🔬 Transparencia Técnica.
+
+Para mantener la integridad técnica de esta demostración, es importante notar que:
+
+* **Circuito Placeholder:** El algoritmo actual utiliza rotaciones $\text{RX}(\theta)$ y entrelazamiento básico. No pretende alcanzar una ventaja cuántica (Quantum Advantage), sino demostrar un **Pipeline Quantum-Ready**.
+* **Mapeo Simbólico:** El estado $|11\rangle$ se utiliza como un indicador simbólico de correlación de carga entre dos nodos.
+* **Escalabilidad:** La arquitectura está diseñada para que el `LocalSimulator` pueda ser reemplazado por un solver de **QAOA** real en una QPU física con cambios mínimos en el código.
+
+---
+
+## 🛠️ Stack Tecnológico
+* **Cloud:** Boto3 (S3, CloudWatch).
+* **Quantum SDK:** Amazon Braket.
+* **Simulación:** LocalSimulator (para reproducibilidad en vivo).
+
+## 🚀 Cómo probar la PoC
+
+1.  Configura tus credenciales de AWS.
+2.  Asegúrate de tener un bucket de S3 con el archivo `configs.csv` (incluido en el repo).
+3.  Ejecuta:
+    ```bash
+    python hibrido_qaoa_demo.py
+    ```
+
+---
+**Presentado por [Shel-y](https://github.com/Shel-y)** *Software Development Engineering Student @ UVEG | AWS Community Speaker*
